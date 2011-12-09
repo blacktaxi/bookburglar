@@ -1,0 +1,18 @@
+get TOC
+for each item in TOC: get it
+
+def extract_content(html, element_xpath):
+    return contents of elements at specified xpath
+
+book:
+    TOC
+    pages
+
+TOC:
+    extract from HTML @ TOC URL
+
+page:
+    extract from HTML @ page URL
+
+page urls:
+    extract and parse urls from HTML @ TOC URL
