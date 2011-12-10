@@ -74,13 +74,10 @@ def steal_a_book(root_url, index_page='index.html', save_path=None, save_to='.')
     print("Downloading a book at %s" % root_url)
 
     index_html = fetch_html(urlparse.urljoin(root_url, index_page))
-
     book_title = elements_at_xpath(index_html, XPATH_BOOK_TITLE)[0].text
-
-    print('Title: "%s"' % book_title)
-
     first_page = html_at_xpath(index_html, XPATH_FIRST_PAGE_HTML)
 
+    print('Title: "%s"' % book_title)
     print('Extracting chapters...')
 
     chapters = [
@@ -90,10 +87,8 @@ def steal_a_book(root_url, index_page='index.html', save_path=None, save_to='.')
 
     book = ''.join([first_page] + chapters)
 
-    save_path = save_path or os.path.join(save_to, re.sub(r'[^a-zA-Z0-9_\-.() ]+', '', book_title) + '.html')
-
     print('Saving...')
-
+    save_path = save_path or os.path.join(save_to, re.sub(r'[^a-zA-Z0-9_\-.() ]+', '', book_title) + '.html')
     with open(save_path, 'w') as outfile:
         outfile.write(book)
 
